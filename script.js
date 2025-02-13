@@ -99,11 +99,11 @@ function adicionarTermo() {
   if (termo === '') return;
 
   const definicao = buscarDefinicao(termo);
-  const termoCompleto = `${termo}: ${definicao}`;
+  const termoCompleto = `<strong>${termo}</strong>: ${definicao}`; // Termo em negrito
 
   const listaTermos = document.getElementById('listaTermos');
   const novoTermo = document.createElement('li');
-  novoTermo.textContent = termoCompleto;
+  novoTermo.innerHTML = termoCompleto; // Usamos innerHTML para renderizar a tag <strong>
   listaTermos.appendChild(novoTermo);
 
   document.getElementById('termo').value = ''; // Limpa o campo de input
