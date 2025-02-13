@@ -1,3 +1,4 @@
+// Objeto que armazena os termos e suas definições
 const glossario = {
   "loop": "A structure that repeats a block of code until a condition is met.",
   "function": "A block of code designed to perform a particular task.",
@@ -92,6 +93,7 @@ const glossario = {
   "cache": "A hardware or software component that stores data temporarily for faster access."
 };
 
+// Função para adicionar um termo ao glossário
 function adicionarTermo() {
   const termo = document.getElementById('termo').value.trim();
   if (termo === '') return;
@@ -104,9 +106,10 @@ function adicionarTermo() {
   novoTermo.textContent = termoCompleto;
   listaTermos.appendChild(novoTermo);
 
-  document.getElementById('termo').value = '';
+  document.getElementById('termo').value = ''; // Limpa o campo de input
 }
 
+// Função para buscar a definição de um termo no glossário
 function buscarDefinicao(termo) {
   const termoFormatado = termo.toLowerCase();
   if (glossario[termoFormatado]) {
@@ -116,10 +119,19 @@ function buscarDefinicao(termo) {
   }
 }
 
+// Função para limpar a lista e o localStorage
 function limparLista() {
   const listaTermos = document.getElementById('listaTermos');
-  listaTermos.innerHTML = '';
-  localStorage.removeItem('glossario');
+  listaTermos.innerHTML = ''; // Remove todos os itens da lista
+  localStorage.removeItem('glossario'); // Limpa o localStorage
 }
 
+// Adiciona um event listener ao botão "Limpar Lista"
 document.getElementById('limparLista').addEventListener('click', limparLista);
+
+// Adiciona um event listener para o campo de input que detecta a tecla Enter
+document.getElementById('termo').addEventListener('keypress', function (event) {
+  if (event.key === 'Enter') { // Verifica se a tecla pressionada é o Enter
+    adicionarTermo(); // Chama a função para adicionar o termo
+  }
+});
